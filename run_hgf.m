@@ -1,4 +1,4 @@
-function stats = run_hgf(subject_type,subject_num, analysis_name,run_num,resp_var, resp_model, stats, PAPER)
+function stats = run_hgf(subject_type,subject_num,run_num,resp_var, resp_model, stats, PAPER)
 % This function will run the full grid of binary perceptual variables
 % against response variables for the perceptual and response variable
 % specified.
@@ -65,5 +65,4 @@ for k = 1:num_u
 		
 	end
 end
-% name = ['../results/' analysis_name '/stats'];
-% save(name,'stats');
+

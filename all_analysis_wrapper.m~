@@ -12,7 +12,7 @@
 % The questionnaire struct must have a labels field, which should be the same 
 % as the stats{subject_type}.labels field, to ensure subject-to-questionnaire matching
 % If you want to only run the winning model from the paper, set the PAPER flag to 1
-
+clear
 addpath(genpath(DATA_DIRECTORY));
 addpath(genpath(pwd));
 
@@ -23,7 +23,7 @@ PAPER = 1;
 
 % Speficy which steps (as labelled) need to be done:
 done(1) = 0;
-done(2) = 0;
+done(2) = 1;
 done(3) = 1;
 done(4) = 1;
 done(5) = 1;
@@ -32,8 +32,8 @@ done(7) = 1;
 
 % Specify the following variables in your matlab environment
 analysis_name = ANALYSIS_NAME;
-data_dir = DATA_DIRECTORY;
-subject_dir = LIST_OF_SUBJECT_DIRECTORIES;
+data_dir = DATA_DIRECOTRY
+subject_dir = LIST_OF_SUBJECT_DIRECTORIES
 subject_type = 1:length(subject_dir);
 analysis_dir = [PATH_TO_RESULTS_FOLDER analysis_name];
 if exist(analysis_dir) == 0
@@ -47,10 +47,13 @@ end
 %% Step 1: Pull behavioral information and run behavioral ANOVAs
 % N.B: stats struct has the following structure: stats{subject_type}.fields
 if ~done(1)
-    questionnaire_struct = QUESTIONNAIRE_STRUCT;
+    questionnaire_struct = QUESTIONNAIRE_STRUCT
     for i = 1:length(subject_dir)
         stats{i} = output2mat(subject_dir{i})
-    end    
+    end
+    data_name = [data_dir 'stats_' analysis_name]
+    save(data_name,'stats')
+    
     % Now run all significant correlations:
     % all_significant_correlations
     % Add BIS
@@ -58,22 +61,23 @@ if ~done(1)
     if ~add_BIS
         qval = load(QUESTIONNAIRE_STRUCT);
         tmp = fieldnames(qval);
-        qline = ['getfield(qval,''' sprintf('%s',tmp{:}) ''')'];
+        qline = ['getfield(g,''' sprintf('%s',tmp{:}) ''')'];
         qstruct = eval(qline);
         for j = 1:length(subject_type)
             if length(qstruct)< j
                 continue;
             else
-                if sum(strcmp(stats{j}.labels, qstruct{j}.labels) == 0)>0
-                    error('Labels don''t match up! Check your data');
-                else
-                    stats{j}.BIS_Total = qstruct{j}.BIS_Total;
-                end  
+                for k = 1:length(stats{j}.labels)
+                    idx = find(strcmp(qstruct{j}.labels,stats{j}.labels
+                    if sum(strcmp(stats{j}.labels, q{j}.labels) == 0)>0
+                        error('Labels don''t match up! Check your data');
+                    else
+                        stats{j}.BIS_Total = qstruct{j}.BIS_Total;
+                    end
+                end
             end
         end
     end
-    data_name = [data_dir 'stats_' analysis_name];
-    save(data_name,'stats');
 else
     load(stats_struct)
 end
@@ -128,7 +132,7 @@ end
 if ~done(5)
 	regs = all_regressions(analysis_name,printbeta,subject_type,stats, PAPER);
     data_name = [data_dir 'regs_' analysis_name];
-    save(data_name,'regs');
+    save(data_name,'regs')
 end
 %% Step 6: Print all tables:
 
@@ -139,7 +143,7 @@ end
 
 %% Step 7: Run a pdf of all tables
 
-if ~done(7)
+if ~done(8)
 	!pdflatex alltables.tex
 	!open -a Preview alltables.pdf
 	copyfile('./alltables.pdf',[PATH_TO_RESULTS_FOLDER sprintf('%s',analysis_name) '/' sprintf('%s',analysis_name) '.pdf']);

@@ -8,11 +8,11 @@ The main script to run is: all_analysis_wrapper.m. The script is thoroughly comm
        DATA_DIRECTORY := where your data is stored
        LIST_OF_SUBJECT_DIRECTORIES := where your subject-specific raw data is stored
        PATH_TO_RESULTS_FOLDER := where you would like to store your results
+       QUESTIONNAIRE_STRUCT := full path to questionnaire struct
 
 If your raw data has already been processed into a struct, you must speficy
        
        STATS_STRUCT := full path to stats struct
-       QUESTIONNAIRE_STRUCT := full path to questionnaire struct
 
-Where he questionnaire struct is subject-specific questionnaire values. The questionnaire struct must have a labels field, which should be the same as in the stats struct, to allow a robust concatenation of structures. stats{subject_type}.labels will instruct the order of the subjects/patients in each of the subfields.
+The questionnaire struct is subject-specific questionnaire values. The questionnaire struct must have a labels field, which should be the same as in the stats struct, to allow a robust concatenation of structures. stats{subject_type}.labels will instruct the order of the subjects/patients in each of the subfields.
 
