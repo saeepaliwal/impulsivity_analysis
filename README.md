@@ -10,6 +10,7 @@ The main script to run is: all_analysis_wrapper.m. The script is thoroughly comm
        PATH_TO_RESULTS_FOLDER := where you would like to store your results
 
 If your raw data has already been processed into a struct, you must speficy
+       
        STATS_STRUCT := full path to stats struct
        QUESTIONNAIRE_STRUCT := full path to questionnaire struct
 
