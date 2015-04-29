@@ -30,6 +30,11 @@ done(5) = 1;
 done(6) = 1;
 done(7) = 1;
 
+% Check if LIST_OF_SUBJECT_DIRECTORIES is string, turn to cellarray
+if isa(LIST_OF_SUBJECT_DIRECTORIES,'char')
+    LIST_OF_SUBJECT_DIRECTORIES = cellstr(LIST_OF_SUBJECT_DIRECTORIES);
+end
+ 
 % Specify the following variables in your matlab environment
 analysis_name = ANALYSIS_NAME;
 data_dir = DATA_DIRECTORY;
