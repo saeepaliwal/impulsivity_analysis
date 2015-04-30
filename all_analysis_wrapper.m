@@ -30,11 +30,6 @@ done(5) = 1;
 done(6) = 1;
 done(7) = 1;
 
-% Check if LIST_OF_SUBJECT_DIRECTORIES is string, turn to cellarray
-if isa(LIST_OF_SUBJECT_DIRECTORIES,'char')
-    LIST_OF_SUBJECT_DIRECTORIES = cellstr(LIST_OF_SUBJECT_DIRECTORIES);
-end
- 
 % Specify the following variables in your matlab environment
 analysis_name = ANALYSIS_NAME;
 data_dir = DATA_DIRECTORY;
@@ -52,6 +47,7 @@ end
 %% Step 1: Pull behavioral information and run behavioral ANOVAs
 % N.B: stats struct has the following structure: stats{subject_type}.fields
 if ~done(1)
+    stats = {};
     questionnaire_struct = QUESTIONNAIRE_STRUCT;
     for i = 1:length(subject_dir)
         stats{i} = output2mat(subject_dir{i})

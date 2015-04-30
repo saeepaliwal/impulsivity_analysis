@@ -41,8 +41,8 @@ end
 for k = 1:num_u
 	for v = run_num
 		% Set percept
-		%u = allU{k};
-        u = allU{k}(1:100);
+		u = allU{k};
+        %u = allU{k}(1:100);
 		
 		% Set response
 		responses = allY{resp_var};
