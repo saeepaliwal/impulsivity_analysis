@@ -218,7 +218,9 @@ betminmax(betminmax == 20) = 0;
 betminmax(betminmax == 60) = 1;
 
 % Load true trace file
-load ~/polybox/GamblingData/data/Final_trace.mat
+% load ~/polybox/Shared/GamblingData/Final_trace.mat
+load('C:\Users\Nada Knezevic\polybox\Shared\GamblingData\Final_trace.mat')
+
 realOutcome = cT.P;
 
 if strfind(headerfile,'david')
