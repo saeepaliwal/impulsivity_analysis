@@ -1,4 +1,4 @@
-function [allU] = make_winning_perceptual_variable(subject_type, subject_num,stats)
+function [allU] = make_winning_perceptual_variable(subject_type, subject_num,stats,P)
 % function [allU] = make_percepts(subject_type)
 % subject_type in this 
 % This function will make perceptual variable that will be the substrate
@@ -12,13 +12,6 @@ function [allU] = make_winning_perceptual_variable(subject_type, subject_num,sta
 %
 % -------------------------------------------------------------------------
 % Author: Saee Paliwal, TNU
-
-
-
-load Final_trace.mat
-path(path,genpath(pwd));
-perf = stats{subject_type}.data{subject_num}.performance;
-P = cT.P(1:length(perf));
 
 % 2 Percept: true win/loss (net)
 u = [0 diff(perf)];

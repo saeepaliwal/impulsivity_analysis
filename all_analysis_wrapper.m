@@ -1,9 +1,12 @@
 % This is the workflow for all tables/statistics/figures in the gambling
 % Variables you will need to specify in your workspace:
 %       ANALYSIS_NAME := what you would like to call your analysis
-%       DATA_DIRECTORY := where your data is stored
-%       LIST_OF_SUBJECT_DIRECTORIES := where your subject-specific raw data is stored
-%       PATH_TO_RESULTS_FOLDER := where you would like to store your results
+%       DATA_DIRECTORY := where your data is stored (make sure this ends in
+%       a slash, i.e. '/home/user/mydata/' )
+%       LIST_OF_SUBJECT_DIRECTORIES := where your subject-specific raw data
+%       is stored (also please make sure this ends in a slash)
+%       PATH_TO_RESULTS_FOLDER := where you would like to store your
+%       results (again, please make sure this ends in a slash)
 %       QUESTIONNAIRE_STRUCT := full path to questionnaire struct
 % If your raw data has already been processed into a struct, you must speficy
 %       STATS_STRUCT := full path to stats struct
@@ -22,11 +25,11 @@ addpath(genpath(pwd));
 PAPER = 1;
 
 % Speficy which steps (as labelled) need to be done:
-done(1) = 0;
-done(2) = 0;
+done(1) = 1;
+done(2) = 1;
 done(3) = 1;
 done(4) = 1;
-done(5) = 1;
+done(5) = 0;
 done(6) = 1;
 done(7) = 1;
 
@@ -39,6 +42,10 @@ analysis_dir = [PATH_TO_RESULTS_FOLDER analysis_name];
 if exist(analysis_dir) == 0
     mkdir(analysis_dir)
 end
+
+% Pull in final game trace
+load Final_trace.mat
+P = cT.P(1:length(perf));
 
 % If the data import into matlab is already completed, specify the path to that mat file
 if done(1)
@@ -83,7 +90,7 @@ end
 if ~done(2)
     for g = subject_type
         for i = 1:length(stats{g}.labels)
-            stats = run_all_models(i,stats, subject_type(g), PAPER);
+            stats = run_all_models(i,stats, subject_type(g), PAPER,P);
         end
     end
 end
@@ -95,6 +102,8 @@ if ~done(3)
     for s = subject_type
         collect_model_info(analysis_name, s,stats, PAPER);
     end
+    data_name = [data_dir 'parameter_workspace_' sprintf('%d',subject_type)];
+    save (data_name,'kappa_all','omega_all','theta_all','beta_all','binFEgrid');
 end
 
 %% Step 4: Run all BMS analysis

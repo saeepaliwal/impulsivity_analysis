@@ -1,4 +1,4 @@
-function [allY] = make_response_variable(subject_num)
+function [allY] = make_response_variable(subject_num, stats)
 % [allY] = make_response_variable(subject_type, subject_num)
 % function [allY] = make_response(subject_type)
 % This function will generate the various response variables as a substrate
@@ -7,13 +7,10 @@ function [allY] = make_response_variable(subject_num)
 % -------------------------------------------------------------------------
 % Author: Saee Paliwal, TNU
 
-% load stats
-load slotdata
 
 % 1. All bet switches: This is a 1 when you change bets up and 0 when
 % you keep the same bet or switch down
-%betswitchup = stats{subject_type}.data{subject_num}.bets';
-betswitchup = slotdata.data{subject_num}.bets';
+betswitchup = stats{subject_type}.data{subject_num}.bets';
 betswitchup(betswitchup == 60) = 1;
 betswitchup(betswitchup == 20) = 0;
 betswitchup = [0; diff(betswitchup)];
@@ -22,24 +19,21 @@ allY{1} = betswitchup;
 
 % 2. Bet switch up, gamble
 clear allswitch
-%gamble = stats{subject_type}.data{subject_num}.gamble';
-gamble = slotdata.data{subject_num}.gamble';
+gamble = stats{subject_type}.data{subject_num}.gamble';
 allswitch = nansum([betswitchup gamble],2); % sums every row together
 allswitch = +(allswitch~=0);
 allY{2} = allswitch;
 
 % 3. Bet switch up, gamble, cashout
 clear allswitch
-%cashout = stats{subject_type}.data{subject_num}.cashout';
-cashout = slotdata.data{subject_num}.cashout';
+cashout = stats{subject_type}.data{subject_num}.cashout';
 allswitch = nansum([betswitchup gamble cashout],2);
 allswitch = +(allswitch~=0);
 allY{3} = allswitch;
 
 % 4. Bet switch up, machine switch, gamble, cashout
 clear allswitch
-% machineSwitch = stats{subject_type}.data{subject_num}.switches';
-machineSwitch = slotdata.data{subject_num}.switches';
+machineSwitch = stats{subject_type}.data{subject_num}.switches';
 allswitch = nansum([betswitchup machineSwitch gamble cashout],2);
 allswitch = +(allswitch~=0);
 allY{4} = allswitch;

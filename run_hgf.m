@@ -1,4 +1,4 @@
-function stats = run_hgf(subject_type,subject_num,run_num,resp_var, resp_model, stats, PAPER)
+function stats = run_hgf(subject_type,subject_num,run_num,resp_var, resp_model, stats, PAPER,P)
 % This function will run the full grid of binary perceptual variables
 % against response variables for the perceptual and response variable
 % specified.
@@ -10,23 +10,15 @@ function stats = run_hgf(subject_type,subject_num,run_num,resp_var, resp_model, 
 
 % Run various HGF models for all the data
 
-load Final_trace.mat
+
 path(path,genpath(pwd));
-
 perf = stats{subject_type}.data{subject_num}.performance;
-%time = stats{subject_type}.data{subject_num}.reaction;
-
-% Pull out NaNs for modelling
-%time(isnan(time)) = 0;
-%time = tapas_sgm(time,1); % map to small/large space
-
-P = cT.P(1:length(perf));
 
 %% Run perceptual variables
 if PAPER
-    allU = make_winning_perceptual_variable(subject_type,subject_num, stats);
+    allU = make_winning_perceptual_variable(subject_type,subject_num, stats,P);
 else
-    allU = make_perceptual_variable(subject_type, subject_num,stats);
+    allU = make_perceptual_variable(subject_type, subject_num,stats,P);
 end
 num_u = length(allU);
 
@@ -42,8 +34,7 @@ for k = 1:num_u
 	for v = run_num
 		% Set percept
 		u = allU{k};
-        %u = allU{k}(1:100);
-		
+        
 		% Set response
 		responses = allY{resp_var};
 		

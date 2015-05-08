@@ -1,4 +1,4 @@
-function [allU] = make_perceptual_variable(subject_type, subject_num)
+function [allU] = make_perceptual_variable(subject_type, subject_num,P)
 % function [allU] = make_percepts(subject_type)
 % subject_type in this 
 % This function will make perceptual variable that will be the substrate

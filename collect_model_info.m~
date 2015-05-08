@@ -1,4 +1,4 @@
-function [kappa_all,omega_all,theta_all,beta_all,binFEgrid] = collect_model_info(analysis_name, subject_type,stats,PAPER)
+function collect_model_info(analysis_name, subject_type,stats,PAPER)
 
 % Response Models
 % n = 1 is the bet switch 0/1 response
@@ -21,6 +21,8 @@ if PAPER
         omega_all(i) = stats{subject_type}.hgf.bin(:,:,i).p_prc.om(:,2);
         beta_all(i) = stats{subject_type}.hgf.bin(:,:,i).p_obs.be;
     end
+% save (['~/Dropbox/NadaThesis/Analysis/results' sprintf('%s', analysis_name) '/parameter_workspace_' sprintf('%d',subject_type)],'omega_all','theta_all','beta_all','binFEgrid','labels');
+
 else
     for g = subject_type
         for n = 1:4
