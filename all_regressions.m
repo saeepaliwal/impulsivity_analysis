@@ -1,11 +1,7 @@
-function regs = all_regressions(anaFolder,printbeta, subject_type,stats, PAPER)
+function regs = all_regressions(anaFolder,printbeta, subject_type,stats, PAPER,parameter_workspace)
 
 %% Regression of parametrs on readouts and BIS
-
-% Load the appropriate workspace
-% load(['../results/' sprintf('%s',anaFolder) '/parameter_workspace_' sprintf('%d',subject_type)])
-load(['~/Dropbox/NadaThesis/Analysis/results' sprintf('%s', anaFolder) '/parameter_workspace_' sprintf('%d',subject_type)]);
-
+load(parameter_workspace)
 
 if PAPER
     omega = omega_all';

@@ -102,8 +102,8 @@ if ~done(3)
     for s = subject_type
         collect_model_info(analysis_name, s,stats, PAPER);
     end
-    data_name = [data_dir 'parameter_workspace_' sprintf('%d',subject_type)];
-    save (data_name,'kappa_all','omega_all','theta_all','beta_all','binFEgrid');
+    parameter_workspace = [data_dir 'parameter_workspace_' sprintf('%d',subject_type)];
+    save (parameter_workspace,'kappa_all','omega_all','theta_all','beta_all','binFEgrid');
 end
 
 %% Step 4: Run all BMS analysis
@@ -136,7 +136,7 @@ end
 %% Step 5: Run all regressions on best model pars
 
 if ~done(5)
-	regs = all_regressions(analysis_name,printbeta,subject_type,stats, PAPER);
+	regs = all_regressions(analysis_name,printbeta,subject_type,stats, PAPER, parameter_workspace);
     data_name = [data_dir 'regs_' analysis_name];
     save(data_name,'regs');
 end
