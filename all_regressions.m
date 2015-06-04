@@ -4,8 +4,8 @@ function regs = all_regressions(anaFolder,printbeta, subject_type,stats, PAPER,p
 load(parameter_workspace)
 
 if PAPER
-    omega = omega_all';
-    theta = theta_all';
+    omega = pars.omega';
+    theta = pars.theta';
 end
     
 % Demean and scale to unity vol

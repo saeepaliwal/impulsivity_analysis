@@ -37,4 +37,5 @@ near_miss(near_miss == 2) = 1; % fake wins map to wins
 near_miss(near_miss == 3) = 1; % near misses map to wins
 near_miss = near_miss';
 near_miss = near_miss(1:length(perf));
-allU{3} = near_miss;
+allU{3} = u;
+clear u;

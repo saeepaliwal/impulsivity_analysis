@@ -47,12 +47,12 @@ for k = 1:num_u
 		
 		% Save to stats
 		stats{subject_type}.hgf.bin(v,k,subject_num) = pars;
-		stats{subject_type}.hgf.bin_FE(v,k, subject_num) = pars.F;
+		stats{subject_type}.hgf.bin_FE(v,k, subject_num) = pars.optim.LME;
 		
 		rw_pars = tapas_fitModel(responses, u, 'tapas_rw_binary_config', 'tapas_softmax_binary_config', 'tapas_quasinewton_optim_config');
 		
 		stats{subject_type}.rw(v,k, subject_num) = rw_pars;
-		stats{subject_type}.rw_FE(v,k, subject_num) = rw_pars.F;
+		stats{subject_type}.rw_FE(v,k, subject_num) = rw_pars.optim.LME;
 		
 	end
 end

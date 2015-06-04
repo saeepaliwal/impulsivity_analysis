@@ -13,7 +13,10 @@ function [allU] = make_winning_perceptual_variable(subject_type, subject_num,sta
 % -------------------------------------------------------------------------
 % Author: Saee Paliwal, TNU
 
-% 2 Percept: true win/loss (net)
+% Pull performance
+perf = stats{subject_type}.data{subject_num}.performance;
+
+% Percept: true win/loss (net)
 u = [0 diff(perf)];
 u = +(u>0); % This replaces all positive values with a 1
 gam = stats{subject_type}.data{subject_num}.gamble;

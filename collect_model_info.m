@@ -1,4 +1,4 @@
-function [kappa_all,omega_all,theta_all,beta_all,binFEgrid] = collect_model_info(analysis_name, subject_type,stats,PAPER)
+function [kappa_all,omega_all,theta_all,beta_all,binFEgrid] = collect_model_info(subject_type,stats,PAPER)
 
 % Response Models
 % n = 1 is the bet switch 0/1 response
@@ -17,7 +17,7 @@ if PAPER
     labels = stats{subject_type}.labels;
     for i = 1:length(binFEgrid)
         kappa_all(i) = stats{subject_type}.hgf.bin(:,:,i).p_prc.ka(:,2);
-        theta_all(i) = stats{subject_type}.hgf.bin(:,:,i).p_prc.th;
+        theta_all(i) = stats{subject_type}.hgf.bin(:,:,i).p_prc.om(:,3);
         omega_all(i) = stats{subject_type}.hgf.bin(:,:,i).p_prc.om(:,2);
         beta_all(i) = stats{subject_type}.hgf.bin(:,:,i).p_obs.be;
     end

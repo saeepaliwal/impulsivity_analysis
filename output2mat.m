@@ -9,7 +9,6 @@ function stats = output2mat(output_dir)
 % 2 is a fake win
 % 3 is a near miss
 
-load game_trace
 stats = [];
 
 % Pull all subject names
@@ -129,7 +128,6 @@ end
 
 
 % Aggregate variables
-stats.game_trace = game_trace;
 stats.allBets = allBets;
 stats.allReaction = allReaction;
 stats.allPerf = allPerf;

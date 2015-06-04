@@ -1,4 +1,4 @@
-function [allY] = make_response_variable(subject_num, stats)
+function [allY] = make_response_variable(subject_type, subject_num,stats)
 % [allY] = make_response_variable(subject_type, subject_num)
 % function [allY] = make_response(subject_type)
 % This function will generate the various response variables as a substrate
@@ -33,7 +33,7 @@ allY{3} = allswitch;
 
 % 4. Bet switch up, machine switch, gamble, cashout
 clear allswitch
-machineSwitch = stats{subject_type}.data{subject_num}.switches';
+machineSwitch = stats{subject_type}.data{subject_num}.machineSwitches';
 allswitch = nansum([betswitchup machineSwitch gamble cashout],2);
 allswitch = +(allswitch~=0);
 allY{4} = allswitch;
