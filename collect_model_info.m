@@ -29,15 +29,13 @@ else
                     % Pull out binary free energy information
                     binFEgrid(:,:,i) = [reshape(stats{subject_type}.hgf.bin_FE',1,12) stats{g}.rw_FE(1,:)];
                     kappa_all(n,nn,i) = stats{subject_type}.hgf.bin(n,nn,i).p_prc.ka(:,2);
-                    theta_all(n,nn,i) = stats{subject_type}.hgf.bin(n,nn,i).p_prc.th;
+                    theta_all(n,nn,i) = stats{subject_type}.hgf.bin(n,nn,i).p_prc.om(:,3);
                     omega_all(n,nn,i) = stats{subject_type}.hgf.bin(n,nn,i).p_prc.om(:,2);
                     beta_all(n,nn,i) = stats{subject_type}.hgf.bin(n,nn,i).p_obs.be;
                 end
             end
             
         end
-        % Save parameters
-        %         save (['../results/' sprintf('%s', analysis_name) '/parameter_workspace_' sprintf('%d',subject_type)],'omega_all','theta_all','beta_all','binFEgrid');
     end
     
 end

@@ -2,14 +2,16 @@
 % Variables you will need to specify in your workspace:
 %       1. ANALYSIS_NAME := what you would like to call your analysis
 %
-%       2. DATA_DIRECTORY := where your data is stored (make sure this ends in
-%       a slash, i.e. '/home/user/mydata/' )
+%       2. OUTPUT_DIRECTORY := where you would like your outputfiles that contain
+%         data to be stored, if they need to be on an internal server, say
+%         (make sure this ends in a slash, i.e. '/home/user/mydata/' )
 %
 %       3. LIST_OF_SUBJECT_DIRECTORIES := where your subject-specific raw data
 %       is stored (also please make sure this ends in a slash)
 %
 %       4. PATH_TO_RESULTS_FOLDER := where you would like to store your
-%       results (again, please make sure this ends in a slash)
+%       results that do not contain sensitive patient data 
+%       (again, please make sure this ends in a slash)
 %
 % Optional additions:
 %
@@ -37,11 +39,11 @@ PAPER = 1;
 
 % Speficy which steps (as labelled) need to be done:
 % 1 is done, 0 is to be done 
-done(1) = 0;
+done(1) = 1;
 done(2) = 0;
-done(3) = 0;
-done(4) = 0;
-done(5) = 0;
+done(3) = 1;
+done(4) = 1;
+done(5) = 1;
 done(6) = 1;
 done(7) = 1;
 done(8) = 1;
@@ -49,7 +51,7 @@ done(8) = 1;
 
 % Specify the following variables in your matlab environment
 analysis_name = ANALYSIS_NAME;
-data_dir = DATA_DIRECTORY;
+data_dir = OUTPUT_DIRECTORY;
 results_dir = PATH_TO_RESULTS_FOLDER;
 
 if ~iscell(LIST_OF_SUBJECT_DIRECTORIES)
