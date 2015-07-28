@@ -36,8 +36,7 @@ for i = 1:length(subjects)
     subdir = [output_dir '/' subject_name '/1/'];
     datafile = dir([output_dir '/' subject_name '/1/output*_short.txt']);
     datafile = [subdir datafile.name];
-    headerfile = dir([output_dir '/' subject_name '/1/header*.txt']);
-   
+    headerfile = dir([output_dir '/' subject_name '/1/header*.txt']);   
     headerfile = [subdir headerfile.name];
     
     

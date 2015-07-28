@@ -39,8 +39,8 @@ PAPER = 1;
 
 % Speficy which steps (as labelled) need to be done:
 % 1 is done, 0 is to be done 
-done(1) = 1;
-done(2) = 0;
+done(1) = 0;
+done(2) = 1;
 done(3) = 1;
 done(4) = 1;
 done(5) = 1;
