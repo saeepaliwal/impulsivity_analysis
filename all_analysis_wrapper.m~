@@ -45,9 +45,9 @@ PAPER = 1;
 % Speficy which steps (as labelled) need to be done:
 % 1 is done, 0 is to be done 
 done(1) = 1;
-done(2) = 1;
-done(3) = 1;
-done(4) = 1;
+done(2) = 0;
+done(3) = 0;
+done(4) = 0;
 done(5) = 0;
 done(6) = 1;
 done(7) = 1;
@@ -182,11 +182,8 @@ end
 %% Step 5: Run all regressions on best model pars
 questionnaires_to_test = {'BIS_Total'};
 if ~done(5)
-    regs = {};
-    for q = 1:length(questionnaires_to_test);
-        questionnaire = questionnaires_to_test{q};
-        regs{q} = all_regressions(printbeta,questionnaire,subject_type,stats, PAPER, parameter_workspace);
-    end
+    for q = 1:length(questt
+	regs = all_regressions(printbeta,,subject_type,stats, PAPER, parameter_workspace);
     data_name = [results_dir 'regs_' analysis_name];
     save(data_name,'regs');
 end
